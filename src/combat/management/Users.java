@@ -35,16 +35,12 @@ public class Users extends javax.swing.JPanel {
         students = userService.getStudentsFromFile("students.csv");
         userPanels = new ArrayList<User>();
         
-        System.out.println(jPanel1.getWidth());
-        
         final Dimension userWindowSize = new Dimension(200, 300);
         final int setPaddingX = 20;
         final int setPaddingGapY = 10;
         final int jPanel1Width = jPanel1.getWidth();
         
         final int userWindowsPerRow = ((jPanel1Width - setPaddingX) / userWindowSize.width);
-        
-        System.out.println(userWindowsPerRow);
         
         for (int i = 0; i < students.size(); ++i) {
             int modulusOfI = (i % userWindowsPerRow); 
@@ -54,8 +50,6 @@ public class Users extends javax.swing.JPanel {
             int x = (setPaddingX / 2) + (modulusOfI * userWindowSize.width);
             s.setSize(userWindowSize);
             s.setLocation(x, y);
-            
-            System.out.println(s.getLocation());
         }
         //calculateAndResizeJPanel5();
         jPanel1.validate();     
@@ -209,7 +203,7 @@ public class Users extends javax.swing.JPanel {
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
         this.jPanel1.removeAll();
-        System.out.println(this.jPanel1.getComponents().length + " ");
+        
         for(int i = 0; i < this.students.size(); ++i) {
             Student thisSTUDENT = this.students.get(i);
             java.awt.Component[] components = this.jPanel5.getComponents();
@@ -251,7 +245,6 @@ public class Users extends javax.swing.JPanel {
 //                            this.userPanelSize = components[j].getSize();
 //                        }
 //                        components[j].setSize(0, 0);
-//                        System.out.println(components[j].getSize());
 //                        components[j].setVisible(true);
                     }
                 }

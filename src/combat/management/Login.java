@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import combat.management.ManagementFrame;
 
 /**
  *
@@ -107,7 +108,7 @@ public class Login extends javax.swing.JFrame {
         if ("Password".equals(jTextField1.getText()) && "Username".equals(jTextField2.getText())) {
             JOptionPane.showMessageDialog(this, "Login Success");
             this.setVisible(false);
-            
+            new ManagementFrame();
 //            Dashboard dashboardPanel = new Dashboard();
 //            this.root.add(dashboardPanel);
 //            this.root.validate();

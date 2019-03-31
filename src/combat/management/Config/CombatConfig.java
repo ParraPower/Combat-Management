@@ -20,4 +20,22 @@ public final class CombatConfig {
         
         return null;
     }
+    
+    public static String StudentCSVPath() {
+        AppSetting userImageDirectory = AppConfig.findAppSetting("studentsCSVPath");
+        if (AppConfig.findAppSetting("studentsCSVPath") != null) {
+            return userImageDirectory.value;
+        }
+        
+        return null;
+    }
+    
+    public static String PaymentsCSVPath() {
+        AppSetting paymentsCSVDirectory = AppConfig.findAppSetting("paymentsCSVPath");
+        if (AppConfig.findAppSetting("paymentsCSVPath") != null) {
+            return paymentsCSVDirectory.value;
+        }
+        
+        return null;
+    }
 }
