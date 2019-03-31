@@ -34,14 +34,12 @@ public class User extends javax.swing.JPanel {
         
         BufferedImage img = null;
         try {
-            System.out.println(userImageDirectory);
             img = ImageIO.read(new File(userImageDirectory + s.ProfileImageFilename));
             //imageLabel.setText(imageLabel.getSize().height + " " + imageLabel.getSize().width);
             this.imageLabel.setIcon(new ImageIcon(img));
             this.imageLabel.setSize(150,189);
         }
         catch (Exception e) {
-           System.out.println(e);
         }
     }
     

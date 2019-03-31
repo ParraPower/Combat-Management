@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appSettings>
-  <appSetting name="userImagesDirectory" value="G:\\Users\\Ahmed\\Documents\\My Documents\\Mobile Profile Data\\Media\\Images\\" />
+  <appSetting name="userImagesDirectory" value="G:\\Users\\Ahmed\\Documents\\My Documents\\Images\\" />
+  <appSetting name="userImagesDirectoryOld" value="G:\\Users\\Ahmed\\Documents\\My Documents\\Mobile Profile Data\\Media\\Images\\" />
+  <appSetting name="studentsCSVPath" value="C:\\Users\\Ahmed\\Documents\\NetBeansProjects\\Combat Management\\students.csv" />
+  <appSetting name="paymentsCSVPath" value="C:\\Users\\Ahmed\\Documents\\NetBeansProjects\\Combat Management\\payments.csv" />
 </appSettings>

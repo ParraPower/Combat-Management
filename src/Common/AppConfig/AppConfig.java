@@ -74,11 +74,8 @@ public final class AppConfig {
     
     public static AppSetting findAppSetting(String name) {
         ArrayList<AppSetting> appSettings = getAppSettings();
-        System.out.println("Elements in list: " + appSettings.size());
         for (int i = 0; i < appSettings.size(); ++i) {
-            System.out.println(appSettings.get(i).name.toLowerCase() + " " + name.toLowerCase());
             if (appSettings.get(i).name.toLowerCase().equalsIgnoreCase(name.toLowerCase())) {
-                System.out.println("Found it");
                 return appSettings.get(i);
             }
         } 
