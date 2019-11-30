@@ -300,3 +300,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/src/combat/management/Combat_Management.exe
+/src/combat/management/Combat_Management.xml
+/src/combat/management/config.xml
+payments.csv
+students.csv

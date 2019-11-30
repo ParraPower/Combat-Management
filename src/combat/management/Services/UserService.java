@@ -8,6 +8,7 @@ package combat.management.Services;
 import com.opencsv.CSVWriter;
 import combat.management.Business.CSVScanner;
 import combat.management.Models.Student;
+import combat.management.Business.CSVHelpers;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -23,29 +24,7 @@ public class UserService {
         _csvScanner = new CSVScanner();
         
     }
-    
-    private boolean overwriteCSVFile(ArrayList<String[]> data, String filePath) {
-        try {
-            File file = new File(filePath);
-          
-            // create FileWriter object with file as parameter 
-            FileWriter outputfile = new FileWriter(file); 
-            
-            CSVWriter writer = new CSVWriter(outputfile);
-            
-            writer.writeAll(data); 
-  
-            // closing writer connection 
-            writer.close(); 
-            
-            return true;
-        } 
-        catch (Exception e) {
-            return false;
-        }
-    }
 
-    
     public ArrayList<Student> getStudentsFromFile(String filePath) {
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<ArrayList<String>> readData = new ArrayList<ArrayList<String>>();
@@ -76,10 +55,48 @@ public class UserService {
                 dataToWrite.add(students.get(i).GetAsStringArray());
             }
             
-            return overwriteCSVFile(dataToWrite, filePath);
+            return CSVHelpers.overwriteCSVFile(dataToWrite, filePath);
         }
         catch(Exception e) {
             return false;
+        }
+    }
+    
+    public boolean AddStudent(Student student, String filePath) {
+        try {
+            student.ID = getNextIDForAddingStudent(filePath);
+            
+            ArrayList<Student> students = this.getStudentsFromFile(filePath);
+            ArrayList<String[]> dataToWrite = new ArrayList<>();
+            
+            for (int i = 0; i < students.size(); ++i) {
+                dataToWrite.add(students.get(i).GetAsStringArray());
+            }
+            
+            dataToWrite.add(student.GetAsStringArray());
+            
+            return CSVHelpers.overwriteCSVFile(dataToWrite, filePath);
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+   
+    public int getNextIDForAddingStudent(String filePath){
+        int nextID = 0;
+        try {
+            ArrayList<Student> students = getStudentsFromFile(filePath);
+            
+            for(Student curr : students)
+            {
+                if (curr.ID > nextID)
+                    nextID = curr.ID;
+            }
+            
+            return (nextID + 1);
+        }
+        catch(Exception e) {
+            return -1;
         }
     }
 }

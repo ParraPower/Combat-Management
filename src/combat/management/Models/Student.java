@@ -50,6 +50,25 @@ public class Student {
         LeftOnDate = parsedLine.get(16);
     }
     
+    public Student() {
+        ID = 0;
+        Firstname = "";
+        Lastname = "";
+        Age =  0;
+        Address = "";
+        Suburb = "";
+        Postcode = 0;
+        ProfileImageFilename = "";
+        DateOfBirth = "";
+        BeltLevelDate = "";
+        BeltLevel = "";
+        ContactPhoneNumber = "";
+        ContactEmail = "";
+        EmergencyContactPhoneNumber = "";
+        EmergencyContactName = "";
+        MemberSinceDate = "";
+        LeftOnDate = "";
+    }
     
     public String[] GetAsStringArray() {
          ArrayList<String> result = new ArrayList<String>();
@@ -74,3 +93,4 @@ public class Student {
          return result.toArray(new String[result.size()]);
     }
 }
+

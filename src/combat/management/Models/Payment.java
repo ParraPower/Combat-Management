@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * @author Ahmed
  */
 public class Payment {
+    public Payment(int studentID, String referenceNumber) {
+        
+    }
     public Payment(ArrayList<String> parsedLine) {
         _studentID = Integer.parseInt(parsedLine.get(0));
         _dueDate = parsedLine.get(1);
@@ -30,6 +33,9 @@ public class Payment {
     public String GetReferenceNumber() {
         return _referenceNumber;
     }
+    public void SetReferenceNumber(String referenceNumber) {
+        this._referenceNumber = referenceNumber;
+    }
     
     private String _dueDate;
     public String GetDueDate() {
@@ -42,6 +48,9 @@ public class Payment {
     private float _amount;
     public float GetAmount() {
         return this._amount;
+    }
+    public void SetAmount(float amount) {
+        this._amount = amount;
     }
     
     private boolean _isPaid;
@@ -59,4 +68,16 @@ public class Payment {
     public void SetPaidOnTime(boolean _paidOnTime) {
         this._paidOnTime = _paidOnTime;
     } 
+    
+    public String[] GetAsStringArray() {
+         ArrayList<String> result = new ArrayList<String>();
+         result.add(Integer.toString(this._studentID));
+         result.add(this._dueDate);
+         result.add(String.valueOf(this.GetAmount()));
+         result.add(this.GetReferenceNumber());
+         result.add(String.valueOf(this.IsPaid()));
+         result.add(String.valueOf(this.PaidOnTime()));
+
+         return result.toArray(new String[result.size()]);
+    }
 }

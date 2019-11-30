@@ -7,6 +7,7 @@ package combat.management.Services;
 
 import combat.management.Business.CSVScanner;
 import combat.management.Models.Payment;
+import combat.management.Business.CSVHelpers;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ public class PaymentsService {
                 Payment payment = new Payment(action);
                 if (payment.StudentID() == studentId) {
                     payments.add(payment);
-                }
+                } 
             }); 
         }
         catch(Exception e) {
@@ -40,5 +41,47 @@ public class PaymentsService {
         }
         
         return payments;
+    }
+    /*public boolean AddStudent(Student student, String filePath) {
+        try {
+            student.ID = getNextIDForAddingStudent(filePath);
+            
+            ArrayList<Student> students = this.getStudentsFromFile(filePath);
+            ArrayList<String[]> dataToWrite = new ArrayList<>();
+            
+            for (int i = 0; i < students.size(); ++i) {
+                dataToWrite.add(students.get(i).GetAsStringArray());
+            }
+            
+            dataToWrite.add(student.GetAsStringArray());
+            
+            return overwriteCSVFile(dataToWrite, filePath);
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }*/
+    public boolean addPaymentHistoryForStudent(Payment newPayment, String filePath) {
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        ArrayList<ArrayList<String>> readData = new ArrayList<ArrayList<String>>();
+        
+        ArrayList<Payment> payementsFotStudent = this.getPaymentsHistoryForStudent(newPayment.StudentID(), filePath);
+        ArrayList<String[]> dataToWrite = new ArrayList<>();
+        
+        try {
+            readData = CSVScanner.Process(filePath);
+            
+            for (int i = 0; i < payementsFotStudent.size(); ++i) {
+                dataToWrite.add(payementsFotStudent.get(i).GetAsStringArray());
+            } 
+            
+            dataToWrite.add(newPayment.GetAsStringArray());
+            
+            return CSVHelpers.overwriteCSVFile(dataToWrite, filePath);
+        }
+        catch(Exception e) {
+            System.out.println("I messed up");
+            return false;
+        }
     }
 }

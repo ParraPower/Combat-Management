@@ -96,7 +96,6 @@ public class UsersPanel extends javax.swing.JPanel  {
         }
         
         int gridHeight = getNumberOfRowsForGrid(gridItemCount) * gridItemHeight;
-        System.out.println(gridHeight);
         grid.setSize(grid.getWidth(), gridHeight);
 
         grid.revalidate();

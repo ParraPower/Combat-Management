@@ -36,6 +36,8 @@ public class UserPanel extends javax.swing.JPanel/* implements MouseListener*/ {
         
         String userImageDirectory = CombatConfig.UserImagesDirectory();
         
+        System.out.println(userImageDirectory);
+        
         int random = (int)(Math.random() * 50);
         int limit = 4;
         

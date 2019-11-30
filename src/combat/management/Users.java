@@ -235,7 +235,6 @@ public class Users extends javax.swing.JPanel {
                 }
             }
             else {
-                System.out.print(thisSTUDENT.Lastname);
                 boolean studentsPanelFound = false;
                 for (int j = 0; j < components.length && !studentsPanelFound; ++j) {
                     if (((User)components[j]).getStudent().ID == thisSTUDENT.ID) {

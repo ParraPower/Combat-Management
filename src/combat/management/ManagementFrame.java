@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -28,6 +30,7 @@ public class ManagementFrame extends javax.swing.JFrame {
         this.setVisible(true);
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.userPagePanel1.setVisible(false);
+        this.locations.setVisible(false);
     }
 
     private void cursorSet(Component c, int selectedCursor) {
@@ -50,6 +53,7 @@ public class ManagementFrame extends javax.swing.JFrame {
         sidepane = new javax.swing.JPanel();
         users = new javax.swing.JLabel();
         locations = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         configpane = new javax.swing.JPanel();
         usersPanel2 = new combat.management.UsersPanel();
         userPagePanel1 = new combat.management.UserPagePanel();
@@ -62,13 +66,16 @@ public class ManagementFrame extends javax.swing.JFrame {
         parent.setLayout(new java.awt.BorderLayout());
 
         sidepane.setBackground(new java.awt.Color(52, 78, 180));
+        sidepane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sidepane.setPreferredSize(new java.awt.Dimension(300, 106));
 
         users.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         users.setForeground(new java.awt.Color(255, 255, 255));
         users.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         users.setText("Users");
+        users.setToolTipText("");
         users.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         users.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usersMouseClicked(evt);
@@ -98,20 +105,38 @@ public class ManagementFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(102, 204, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Create User");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setFocusable(false);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidepaneLayout = new javax.swing.GroupLayout(sidepane);
         sidepane.setLayout(sidepaneLayout);
         sidepaneLayout.setHorizontalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(users, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(locations, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidepaneLayout.setVerticalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidepaneLayout.createSequentialGroup()
                 .addComponent(users, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(locations, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1383, Short.MAX_VALUE))
         );
 
         parent.add(sidepane, java.awt.BorderLayout.WEST);
@@ -187,6 +212,30 @@ public class ManagementFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         cursorSet((Component)evt.getSource(), Cursor.DEFAULT_CURSOR);
     }//GEN-LAST:event_locationsMouseExited
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        JLabel thisComponent = (JLabel)evt.getSource();
+        
+        for (int i = 0; i < thisComponent.getParent().getParent().getComponentCount(); ++i) {
+            Component c = thisComponent.getParent().getParent().getComponent(i);
+            if ((c instanceof  JPanel) && (((JPanel)c) == configpane)) {
+                JPanel configpaneLocal = (JPanel)c;
+                
+                for (int j = 0; j < configpaneLocal.getComponentCount(); ++j) {
+                    Component d = configpaneLocal.getComponent(j);
+                    
+                    if (d instanceof  UserPagePanel) {
+                        ((UserPagePanel)d).prepareForAddStudent();
+                        d.setVisible(true);
+                    }
+                    else if(!(d instanceof UserPagePanel)) {
+                        d.setVisible(false);
+                    }
+                }   
+            }   
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
     
     /**
      * @param args the command line arguments
@@ -225,6 +274,7 @@ public class ManagementFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel configpane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel locations;
     private javax.swing.JPanel parent;
     private javax.swing.JPanel sidepane;
